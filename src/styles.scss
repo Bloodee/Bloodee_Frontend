@@ -4,6 +4,7 @@
 $background: rgb(248, 217, 217);
 $primarycolor:rgb(114, 31, 31);
 $primarybordercolor : rgb(255, 0, 0);
+$primarhovercolor : rgb(248, 160, 160);
 $font: Prompt,sans-serif;
 
 html,
@@ -90,7 +91,7 @@ button {
 
 /* mouse over link */
 .toolbar-button:hover {
-  color: $primarybordercolor;
+  color: $primarhovercolor;
 }
 
 /* selected link */

@@ -10,13 +10,11 @@
           </div>
           <h2 mat-dialog-title align="center">
             <b>เข้าสู่ระบบเจ้าหน้าที่</b>
-            <br>
-            (ไม่ Sync กับ TP-APPS)
           </h2>
           <form class="login-main-form" name="form" (ngSubmit)="(f.form.valid)" #f="ngForm">
             <mat-dialog-content class="mat-typography">
               <mat-form-field appearance="outline">
-                <mat-label>ชื่อผู้ใช้งาน หรือ E-mail</mat-label>
+                <mat-label>ชื่อผู้ใช้งาน</mat-label>
                 <input matInput placeholder="Username or E-mail" type="text" name="username3"
                   [(ngModel)]="form.username3" #username="ngModel" required />
                 <mat-icon matSuffix>account_circle</mat-icon>
@@ -48,8 +46,7 @@
             <mat-dialog-actions align="center">
               <button mat-stroked-button mat-dialog-close color="warn">ยกเลิก</button>
               &nbsp;
-              <button mat-button mat-raised-button class="primary"
-                type="submit">เข้าสู่ระบบ</button>
+              <button mat-button mat-raised-button color="primary" type="submit">เข้าสู่ระบบ</button>
             </mat-dialog-actions>
           </form>
 
