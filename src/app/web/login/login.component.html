@@ -1,0 +1,61 @@
+<div fxLayout="row warp" fxLayoutAlign="center" style="height: 100%;">
+  <div fxFlex="25%" fxFlex.xs="90%" fxLayoutAlign="center center" align="center">
+
+    <mat-card class="mat-elevation-z3" style="width: 400px;">
+      <mat-card-content>
+        <div fxFlex="100%" fxFlex.xs="100%">
+
+          <div align="center">
+            <img src="./assets/images/logo.png" style="width: 60px;">
+          </div>
+          <h2 mat-dialog-title align="center">
+            <b>เข้าสู่ระบบเจ้าหน้าที่</b>
+            <br>
+            (ไม่ Sync กับ TP-APPS)
+          </h2>
+          <form class="login-main-form" name="form" (ngSubmit)="(f.form.valid)" #f="ngForm">
+            <mat-dialog-content class="mat-typography">
+              <mat-form-field appearance="outline">
+                <mat-label>ชื่อผู้ใช้งาน หรือ E-mail</mat-label>
+                <input matInput placeholder="Username or E-mail" type="text" name="username3"
+                  [(ngModel)]="form.username3" #username="ngModel" required />
+                <mat-icon matSuffix>account_circle</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>รหัสผ่าน</mat-label>
+                <input matInput placeholder="รหัสผ่านที่ใช้กับ TP-APPS" type="password" name="password3"
+                  [(ngModel)]="form.password3" #password="ngModel" required />
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
+
+              <div align="center">
+                <mat-checkbox color="primary" name="remember_me3" [(ngModel)]="form.remember_me3">จดจำฉัน</mat-checkbox>
+              </div>
+
+              <div style="color: red;" align="center" *ngIf="isLoginFailed">
+                <span class="material-icons-outlined" style="font-size: 15px">
+                  info
+                </span>
+                เข้าสู่ระบบไม่สำเร็จ! กรุณาตรวจสอบข้อมูล
+              </div>
+              <br>
+              <div align="center">
+
+              </div>
+              <br>
+            </mat-dialog-content>
+            <mat-dialog-actions align="center">
+              <button mat-stroked-button mat-dialog-close color="warn">ยกเลิก</button>
+              &nbsp;
+              <button mat-button mat-raised-button class="primary"
+                type="submit">เข้าสู่ระบบ</button>
+            </mat-dialog-actions>
+          </form>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px">
+  <div fxFlex="80%" fxFlex.xs="90%">
+    <div fxLayout="row warp" fxLayoutGap="8px grid">
+      <div fxFlex="100%" fxFlex.xl="30%">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <h2>รูปโปรไฟล์</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <!-- img radius 50%-->
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="border-radius: 50%;" />
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <button mat-raised-button color="primary" fxFlex="100%">
+                เปลี่ยนรูปโปรไฟล์
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="70%">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              <h2>ข้อมูลส่วนตัว</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-form-field>
+              <input matInput placeholder="ชื่อ" />
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="นามสกุล" />
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="อายุ" />
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="เบอร์โทรศัพท์" />
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="อีเมล" />
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="ที่อยู่" />
+            </mat-form-field>
+          </mat-card-content>
+          <mat-card-actions>
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <button mat-raised-button color="primary" fxFlex="100%">
+                บันทึก
+              </button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
