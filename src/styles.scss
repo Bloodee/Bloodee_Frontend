@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Prompt&display=swap");
 
 $background: rgb(248, 217, 217);
-$primarycolor:rgb(114, 31, 31);
-$primarybordercolor : rgb(255, 0, 0);
-$primarhovercolor : rgb(248, 160, 160);
-$font: Prompt,sans-serif;
+$primarycolor: rgb(114, 31, 31);
+$primarybordercolor: rgb(255, 0, 0);
+$primarhovercolor: rgb(248, 160, 160);
+$font: Prompt, sans-serif;
 
 html,
 body {
@@ -34,7 +34,8 @@ body {
 }
 
 // mat-input error outline color
-.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
+  .mat-form-field-outline-thick {
   color: rgb(255, 142, 142);
 }
 
@@ -101,7 +102,7 @@ button {
   text-decoration: none;
 }
 
-.toolbar-button>a[ng-reflect-router-link] {
+.toolbar-button > a[ng-reflect-router-link] {
   color: rgb(255, 255, 255);
 }
 
@@ -162,10 +163,11 @@ i {
 .mat-title,
 .mat-typography .mat-h2,
 .mat-typography .mat-title,
-.mat-typography h2 {
+.mat-typography h2,
+h1 ,
+.mat-card {
   font-family: $font;
 }
-
 
 .swal2-title {
   font-family: $font !important;

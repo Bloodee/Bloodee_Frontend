@@ -31,6 +31,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 //Mask
 import { NgxMaskModule, IConfig, MaskPipe } from 'ngx-mask';
@@ -92,6 +93,7 @@ import { StatusComponent } from './web/status/status.component';
     MatMenuModule,
     MatTabsModule,
     MatProgressBarModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
