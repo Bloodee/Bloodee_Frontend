@@ -43,7 +43,7 @@ import { HomeComponent } from './web/home/home.component';
 import { ProfileEditComponent } from './web/profile/edit/edit.component';
 import { DonorComponent } from './web/donor/donor.component';
 import { BookComponent } from './web/book/book.component';
-import { StatusComponent } from './status/status.component';
+import { StatusComponent } from './web/status/status.component';
 
 @NgModule({
   declarations: [

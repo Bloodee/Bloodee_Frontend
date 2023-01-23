@@ -1,7 +1,17 @@
 <div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px">
   <div fxFlex="80%" fxFlex.xs="90%">
     <div fxLayout="row warp" fxLayoutGap="8px grid">
-      <div fxFlex="100%" fxFlex.xl="30%">
+      <div fxFlex="100%" fxFlex.xl="100%">
+        <mat-card>
+          <mat-card-title>
+            <h2>เลือกประเภทผู้บริจาค</h2>
+          </mat-card-title>
+          <mat-radio-group name="selectedValue" fxLayoutGap="3px grid">
+            <mat-radio-button value="1" fxFlex="33.3%" fxFlex.xs="100%">ผู้บริจาคครั้งแรก</mat-radio-button>
+            <mat-radio-button value="2" fxFlex="33.3%" fxFlex.xs="100%">ผู้เคยบริจาค</mat-radio-button>
+            <mat-radio-button value="3" fxFlex="33.3%" fxFlex.xs="100%">ผู้บริจาคเป็นประจำ</mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
       </div>
     </div>
   </div>
