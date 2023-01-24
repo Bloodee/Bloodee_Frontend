@@ -8,7 +8,7 @@
       </div>
       <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
 
-        <mat-card class="mat-elevation-z3" fxFlex="100%">
+        <mat-card class="mat-elevation-z3" fxFlex="100%" style="background-color: rgb(248, 160, 160);">
           <mat-card-header>
             <mat-card-title>
               {{
@@ -29,17 +29,10 @@
           <mat-card-actions>
             <div fxLayout="row warp" fxLayoutGap="8px grid" fxLayoutAlign="center">
               <div *ngFor="let item of carousel_text;let i = index">
-                <mat-icon
-                  *ngIf="i != carousel"
-                  (click)="carousel = i"
-                  style="color: gray; cursor: pointer;"
-                >
+                <mat-icon *ngIf="i != carousel" (click)="carousel = i" style="color: gray; cursor: pointer;">
                   circle
                 </mat-icon>
-                <mat-icon
-                  *ngIf="i == carousel"
-                  style="color: black; "
-                >
+                <mat-icon *ngIf="i == carousel" style="color: black; ">
                   circle
                 </mat-icon>
               </div>
@@ -48,7 +41,7 @@
         </mat-card>
       </div>
 
-      <div fxFlex="33.3%" fxFlex.xs="100%">
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="homeshow == 1">
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
@@ -63,7 +56,7 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <div fxFlex="33.3%" fxFlex.xs="100%">
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="homeshow == 1">
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
@@ -75,6 +68,32 @@
               นัดหมายบริจาค
               <mat-icon>arrow_forward</mat-icon>
             </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="66.6%" fxFlex.xs="100%" *ngIf="homeshow == 2">
+        <mat-card class="mat-elevation-z3" fxFlex="100%">
+          <mat-card-header>
+            <mat-card-title>
+              <h2>คิวที่</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content fxLayoutAlign="center">
+            <h2 style="font-size: 2em;">ลำดับ คิว ที่ 1
+              เวลา 10:00 น.</h2>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="66.6%" fxFlex.xs="100%" *ngIf="homeshow == 3">
+        <mat-card class="mat-elevation-z3" fxFlex="100%">
+          <mat-card-header>
+            <mat-card-title>
+              <h2>นัดหมายบริจาค</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content fxLayoutAlign="center">
+            <p style="font-size: 2em;">วันที่ 1 มกราคม 2566</p>
+            <p style="font-size: 1.5em;">ศูนย์บริจาค </p>
           </mat-card-content>
         </mat-card>
       </div>

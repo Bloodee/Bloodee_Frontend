@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
         subDescription: "Thank For Visiting Our Website3",
       }
     ];
+  homeshow :number = 1 ;
   carousel: number = 0;
   constructor() { }
 
