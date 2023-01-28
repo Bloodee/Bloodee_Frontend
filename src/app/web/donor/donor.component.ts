@@ -255,9 +255,9 @@ export class DonorComponent implements OnInit {
     form.form.markAllAsTouched();
     if (form.valid) {
       if (this.form.sex == '1') {
-        this.form2.q_10 = false
-        this.form2.q_11 = false
-        this.form2.q_12 = false
+        this.form2.q_10 = false;
+        this.form2.q_11 = false;
+        this.form2.q_12 = false;
       }
       stepper.next();
     }
@@ -265,6 +265,7 @@ export class DonorComponent implements OnInit {
   // step next for form2
   next(stepper: MatStepper) {
     if (this.tick()) {
+      window.scrollTo(0, 0);
       stepper.next();
     } else {
       Swal.fire({
