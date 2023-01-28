@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
 //Material Module
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -45,6 +47,8 @@ import { ProfileEditComponent } from './web/profile/edit/edit.component';
 import { DonorComponent } from './web/donor/donor.component';
 import { BookComponent } from './web/book/book.component';
 import { StatusComponent } from './web/status/status.component';
+import { RegisterComponent } from './web/register/register.component';
+import { QueqComponent } from './web/queq/queq.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,9 @@ import { StatusComponent } from './web/status/status.component';
     ProfileEditComponent,
     DonorComponent,
     BookComponent,
-    StatusComponent
+    StatusComponent,
+    RegisterComponent,
+    QueqComponent
   ],
   imports: [
     NgxMaskModule.forRoot(),
@@ -95,7 +101,7 @@ import { StatusComponent } from './web/status/status.component';
     MatProgressBarModule,
     MatAutocompleteModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

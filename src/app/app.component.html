@@ -12,10 +12,14 @@
 
   </div>
   <span class="web-spacer"></span>
-  <a mat-button class="toolbar-button" routerLink="/login"><span
+  <a mat-button class="toolbar-button" routerLink="/login" *ngIf="!isLogin"><span
       class="material-icons-outlined">login</span>
     เข้าสู่ระบบ</a>
- </mat-toolbar>
+  <a mat-button class="toolbar-button" (click)="logout()" *ngIf="isLogin">
+    <span class="material-icons-outlined">logout</span>
+    ออกจากระบบ
+  </a>
+</mat-toolbar>
 
 <mat-sidenav-container class="main-fx" fullscreen>
   <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-md="true"
@@ -28,8 +32,7 @@
     </div>
     <hr width="90%">
     <div fxLayout="column">
-      <a mat-button class="sidebar-button" routerLink="/login"><span
-          class="material-icons">login</span>
+      <a mat-button class="sidebar-button" routerLink="/login"><span class="material-icons">login</span>
         เข้าสู่ระบบ</a>
     </div>
   </mat-sidenav>

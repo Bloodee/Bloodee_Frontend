@@ -18,17 +18,20 @@ export class TokenStorageService {
     }
   }
 
-  signOut(): void {
-    // window.sessionStorage.removeItem(TOKEN_KEY);
-    // window.sessionStorage.removeItem(USER_KEY);
+  public signOut(): void {
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.removeItem(USER_KEY);
-    //window.sessionStorage.clear();
+  }
+  public signIn(username: string, token: string): void {
+    this.saveToken(token);
+    this.saveUser(username);
+  }
+
+  public isSignIn(): boolean {
+    return !!this.getToken();
   }
 
   public saveToken(token: string): void {
-    // window.sessionStorage.removeItem(TOKEN_KEY);
-    // window.sessionStorage.setItem(TOKEN_KEY, token);
     window.localStorage.removeItem(TOKEN_KEY);
     window.localStorage.setItem(TOKEN_KEY, token);
   }
@@ -37,19 +40,12 @@ export class TokenStorageService {
     return window.localStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user: any): void {
-    // window.sessionStorage.removeItem(USER_KEY);
-    // window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  public saveUser(user: string): void {
     window.localStorage.removeItem(USER_KEY);
-    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+    window.localStorage.setItem(USER_KEY, user);
   }
 
   public getUser(): any {
-    const user = window.localStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
-    }
-
-    return {};
+    return window.localStorage.getItem(USER_KEY);
   }
 }

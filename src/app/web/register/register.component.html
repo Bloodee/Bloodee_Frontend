@@ -9,13 +9,13 @@
             <img src="./assets/images/logo.png" style="width: 60px;">
           </div>
           <h2 mat-dialog-title align="center">
-            <b>เข้าสู่ระบบเจ้าหน้าที่</b>
+            <b>ลงทะเบียน</b>
           </h2>
-          <form class="login-main-form" name="form" (ngSubmit)="(f.form.valid) && submitLogin()" #f="ngForm">
+          <form class="login-main-form" name="form" (ngSubmit)="(f.form.valid) && submitRegister()" #f="ngForm">
             <mat-dialog-content class="mat-typography">
               <mat-form-field appearance="outline">
                 <mat-label>ชื่อผู้ใช้งาน</mat-label>
-                <input matInput placeholder="Username" type="text" name="username"
+                <input matInput placeholder="Username or E-mail" type="text" name="username"
                   [(ngModel)]="form.username" #username="ngModel" required />
                 <mat-icon matSuffix>account_circle</mat-icon>
               </mat-form-field>
@@ -26,23 +26,30 @@
                   [(ngModel)]="form.password" #password="ngModel" required />
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
-
-              <div align="center">
-                <!-- ยังไม่มีบัญชี using button -->
-                <button mat-button color="primary" routerLink="/register">สมัครสมาชิก</button>
-              </div>
-
+              <mat-form-field appearance="outline">
+                <mat-label>รหัสผ่านอีกครั้ง</mat-label>
+                <input matInput placeholder="รหัสผ่าน" type="password" name="repassword"
+                  [(ngModel)]="form.repassword" #repassword="ngModel" required
+                    (keyup)="checkPassword(form.password, form.repassword)"
+                  />
+                <mat-icon matSuffix>lock</mat-icon>
+              </mat-form-field>
               <div style="color: red;" align="center" *ngIf="isLoginFailed">
                 <span class="material-icons-outlined" style="font-size: 15px">
                   info
                 </span>
-                เข้าสู่ระบบไม่สำเร็จ! กรุณาตรวจสอบข้อมูล
+                {{errorMessage}}
+              </div>
+              <br>
+              <div align="center">
+
               </div>
               <br>
             </mat-dialog-content>
             <mat-dialog-actions align="center">
+              <button mat-stroked-button color="warn" routerLink="/login">ยกเลิก</button>
               &nbsp;
-              <button mat-button mat-raised-button color="primary" type="submit">เข้าสู่ระบบ</button>
+              <button mat-button mat-raised-button color="primary" type="submit">ลงทะเบียน</button>
             </mat-dialog-actions>
           </form>
 

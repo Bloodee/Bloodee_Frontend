@@ -1,7 +1,7 @@
 <div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px">
   <div fxFlex="80%" fxFlex.xs="90%">
     <div fxLayout="row warp" fxLayoutGap="8px grid">
-      <div fxFlex="100%" fxFlex.xl="30%">
+      <div fxFlex="30%" fxFlex.xs="100%">
         <mat-card>
           <mat-card-header>
             <mat-card-title>
@@ -23,7 +23,7 @@
           </mat-card-actions>
         </mat-card>
       </div>
-      <div fxFlex="70%">
+      <div fxFlex="70%" fxFlex.xs="100%">
         <mat-card>
           <mat-card-header>
             <mat-card-title>
@@ -31,24 +31,182 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <mat-form-field>
-              <input matInput placeholder="ชื่อ" />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="นามสกุล" />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="อายุ" />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="เบอร์โทรศัพท์" />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="อีเมล" />
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="ที่อยู่" />
-            </mat-form-field>
+            <form #f="ngForm" name="form" (ngSubmit)="f.form.valid">
+
+              <div fxLayout="row warp" fxLayoutGap="8px grid">
+                <div fxFlex="100%" fxFlex.xs="100%">
+                  <mat-card>
+                    <mat-card-title>
+                      <h2>เลือกประเภทผู้บริจาค</h2>
+                    </mat-card-title>
+                    <mat-radio-group name="selectedValue">
+                      <div fxLayoutGap="3px grid" fxLayout="row warp">
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-radio-button value="1">ผู้บริจาคครั้งแรก</mat-radio-button>
+                        </div>
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-radio-button value="2">ผู้เคยบริจาค</mat-radio-button>
+                        </div>
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-radio-button value="3">ผู้บริจาคเป็นประจำ</mat-radio-button>
+                        </div>
+                      </div>
+                    </mat-radio-group>
+                  </mat-card>
+                </div>
+                <div fxFlex="100%">
+                  <mat-card>
+                    <!-- ข้อมูลส่วนตัว
+                    ชื่อ นามสกุล เลข ปชช  -->
+                    <mat-card-title>
+                      <h2>ข้อมูลส่วนตัว</h2>
+                    </mat-card-title>
+                    <mat-card-content>
+                      <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                        <!-- prefix -->
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="คำนำหน้า" required [(ngModel)]="form.prefix" #prefix="ngModel"
+                              name="prefix">
+                              <mat-option value="1">นาย</mat-option>
+                              <mat-option value="2">นาง</mat-option>
+                              <mat-option value="3">นางสาว</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput required placeholder="ชื่อ" [(ngModel)]="form.fname" #fname="ngModel"
+                              name="fname">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput required placeholder="นามสกุล" [(ngModel)]="form.lname" #lname="ngModel"
+                              name="lname">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput required placeholder="เลขประจำตัวประชาชน" [(ngModel)]="form.czid"
+                              mask="0-0000-00000-00-0" #czid="ngModel" name="czid">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field (click)="picker.open()">
+                            <input matInput [matDatepicker]="picker" placeholder="วันเกิด" required readonly="true"
+                              [(ngModel)]="form.dob" #dob="ngModel" name="dob">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker disabled="false"></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                        <!-- เพศ -->
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="เพศ" required [(ngModel)]="form.sex" #sex="ngModel" name="sex">
+                              <mat-option value="1">ชาย</mat-option>
+                              <mat-option value="2">หญิง</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <!-- น้ำหนัก -->
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput placeholder="น้ำหนัก" type="number" [(ngModel)]="form.weight"
+                              #weight="ngModel" name="weight">
+                          </mat-form-field>
+                        </div>
+                        <!-- ที่อยู่  -->
+                        <div fxFlex="100%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <textarea matInput placeholder="ที่อยู่" required [(ngModel)]="form.address"
+                              #address="ngModel" name="address"></textarea>
+                          </mat-form-field>
+                        </div>
+                        <!-- จังหวัด -->
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="จังหวัด" required [(ngModel)]="form.province" #province="ngModel"
+                              name="province">
+                              <mat-option value="1">กรุงเทพมหานคร</mat-option>
+                              <mat-option value="2">กระบี่</mat-option>
+                              <mat-option value="3">กาญจนบุรี</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <!-- อำเภอ -->
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="อำเภอ" required [(ngModel)]="form.district" #district="ngModel"
+                              name="district">
+                              <mat-option value="1">เมืองกรุงเทพมหานคร</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <!-- ตำบล -->
+                        <div fxFlex="33%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="ตำบล" required [(ngModel)]="form.subdistrict"
+                              #subdistrict="ngModel" name="subdistrict">
+                              <mat-option value="1">เมืองกรุงเทพมหานคร</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <!-- mobile and email -->
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput placeholder="เบอร์โทรศัพท์" mask="000-000-0000" required
+                              [(ngModel)]="form.mobile" #mobile="ngModel" name="mobile">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="50%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput placeholder="อีเมล" type="email" [(ngModel)]="form.email" #email="ngModel"
+                              name="email">
+                          </mat-form-field>
+                        </div>
+                        <!-- อาชีพ using auto complete -->
+                        <div fxFlex="100%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-label>อาชีพ</mat-label>
+                            <input type="text" placeholder="อาชีพ" aria-label="Number" matInput [matAutocomplete]="auto"
+                              required [(ngModel)]="form.occupation" #occupation="ngModel" name="occupation">
+                            <mat-autocomplete #auto="matAutocomplete">
+                              <mat-option value="ทดสอบ">
+                                ทดสอบ
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                        </div>
+                        <!-- ชื่อนามสกุลเดิม  คำนำหน้าชื่อ ชื่อ นามสกุล-->
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <mat-select placeholder="คำนำหน้าชื่อเดิม" [(ngModel)]="form.old_prefix"
+                              #old_prefix="ngModel" name="old_prefix">
+                              <mat-option value="1">นาย</mat-option>
+                              <mat-option value="2">นาง</mat-option>
+                              <mat-option value="3">นางสาว</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput placeholder="ชื่อเดิม" [(ngModel)]="form.old_fname" #old_fname="ngModel"
+                              name="old_fname">
+                          </mat-form-field>
+                        </div>
+                        <div fxFlex="33.3%" fxFlex.xs="100%">
+                          <mat-form-field>
+                            <input matInput placeholder="นามสกุลเดิม" [(ngModel)]="form.old_lname" #old_lname="ngModel"
+                              name="old_lname">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+            </form>
           </mat-card-content>
           <mat-card-actions>
             <div fxLayout="row" fxLayoutAlign="center center">
