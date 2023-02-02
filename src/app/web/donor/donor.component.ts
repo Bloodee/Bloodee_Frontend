@@ -96,6 +96,7 @@ export class DonorComponent implements OnInit {
     q_37: boolean | null,
     q_5_detail: string,
     q_7_detail: string,
+    node: string
   } = {
       q_1: null,
       q_2: null,
@@ -135,8 +136,15 @@ export class DonorComponent implements OnInit {
       q_36: null,
       q_37: null,
       q_5_detail: '',
-      q_7_detail: ''
+      q_7_detail: '',
+      node: ''
     };
+  bloodCenter = [
+    {
+      id: 1,
+      name: 'โรงพยาบาลเชียงใหม่',
+    }
+  ]
   provinces: {
     id: number,
     name_th: string,
@@ -156,6 +164,26 @@ export class DonorComponent implements OnInit {
     id: number,
     location_name: string,
   }[] = [];
+  package_list: {
+    id: number,
+    name: string,
+    price: number,
+    checked: boolean
+  }[] = [
+      {
+        id: 1,
+        name: 'ตรวจวัดระดับน้ำตาลในเลือด',
+        price: 100,
+        checked: false
+      },
+      {
+        id: 2,
+        name: 'ตรวจวัดระดับคอเลสเตอรอลในเลือด',
+        price: 100,
+        checked: false
+      }
+    ]
+  total_price: number = 0;
   constructor(private router: Router, private userService: UserService,
     private tokenService: TokenStorageService
   ) { }
@@ -249,6 +277,19 @@ export class DonorComponent implements OnInit {
     } else {
       return false;
     }
+  }
+  update_price() {
+    this.total_price = this.package_list.filter((item: {
+      id: number,
+      name: string,
+      price: number,
+      checked: boolean
+    }) => item.checked).reduce((total: number, item: {
+      id: number,
+      name: string,
+      price: number,
+      checked: boolean
+    }) => total + item.price, 0);
   }
 
   firstpagenext(stepper: MatStepper, form: NgForm) {

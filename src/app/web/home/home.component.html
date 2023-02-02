@@ -1,11 +1,15 @@
 <div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px">
   <div fxFlex="65%" fxFlex.xs="90%">
     <div fxLayout="row warp" fxLayoutGap="8px grid">
-      <div fxFlex="100%">
+      <div fxFlex="100%" fxLayoutAlign="center center">
+        <!-- img logo -->
+        <img src="assets/images/logo.png" style="width: 200px; height: 200px;" fxLayoutAlign="center">
+      </div>
+      <!-- <div fxFlex="100%">
         <h2 style="font-size: 3.5em; color:red" fxLayoutAlign="center">
           Bloodee
         </h2>
-      </div>
+      </div> -->
       <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
 
         <mat-card class="mat-elevation-z3" fxFlex="100%" style="background-color: rgb(248, 160, 160);">
@@ -101,12 +105,12 @@
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
-              <h2>สถานะ</h2>
+              <h2>ผลการตรวจสุขภาพ</h2>
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <button mat-raised-button color="primary" fxFlex="100%" routerLink="status">
-              สถานะ
+              ผลการตรวจสุขภาพ
               <mat-icon>arrow_forward</mat-icon>
             </button>
           </mat-card-content>

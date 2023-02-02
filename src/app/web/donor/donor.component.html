@@ -169,6 +169,55 @@
           </ng-template>
         </form>
       </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>แพ็คเกจตรวจสุขภาพ</ng-template>
+        <div fxLayout="row warp" fxLayoutGap="8px grid">
+          <div fxFlex="100%" fxFlex.xs="100%">
+            <mat-card>
+              <mat-card-content>
+                <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                  <div fxFlex="100%">
+                    <!-- checkbox for loop package_list  -->
+                    <!-- make checkbox in row -->
+                    <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                      <div fxFlex="50%" fxFlex.xs="100%" *ngFor="let item of package_list">
+                        <mat-checkbox [(ngModel)]="item.checked" (change)="update_price()">
+                          {{item.name}}
+                          <!-- show price 2 decimal-->
+                          <span>({{
+                            item.price | number: '1.2-2'
+                            }} บาท)</span>
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="8px grid">
+                      <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
+                        <h2 style="font-weight: bold;">
+                          <br>
+                          ราคารวม
+                          <span>
+                            {{
+                            total_price | number: '1.2-2'
+                            }}
+                          </span>
+                          บาท
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+              <mat-card-actions style="display: flex;
+                  justify-content: center;
+                  align-items: center;
+                ">
+                <button mat-raised-button color="primary" matStepperPrevious>ย้อนกลับ</button>
+                <button mat-raised-button color="primary" matStepperNext>ถัดไป</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </mat-step>
       <mat-step [stepControl]="g.control">
         <form #g="ngForm" name="form" (ngSubmit)="g.form.valid">
           <ng-template matStepLabel>ข้อมูลประวัติ</ng-template>
@@ -773,6 +822,40 @@
 
           </ng-template>
         </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>ศูนย์บริจาคโลหิต</ng-template>
+        <div fxLayout="row warp" fxLayoutGap="8px grid">
+          <div fxFlex="100%" fxFlex.xs="100%">
+            <mat-card>
+              <mat-card-content>
+                <!-- select label ศูนย์บริจาค -->
+                <div fxLayout="row" fxLayoutGap="8px grid">
+                  <div fxFlex="100%" fxFlex.xs="100%">
+                    <mat-form-field>
+                      <mat-label>ศูนย์บริจาคโลหิต</mat-label>
+                      <mat-select [(value)]="form2.node">
+                        <mat-option *ngFor="let item of bloodCenter" [value]="item.id">
+                          {{item.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+
+
+              </mat-card-content>
+              <mat-card-actions style="display: flex;
+                  justify-content: center;
+                  align-items: center;
+                ">
+                <button mat-raised-button color="primary" matStepperPrevious>ย้อนกลับ</button>
+                <button mat-raised-button color="primary" matStepperNext>ถัดไป</button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>ยืนยันข้อมูล</ng-template>

@@ -1,1 +1,39 @@
-<p>book works!</p>
+<div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px">
+  <div fxFlex="60%" fxFlex.xs="90%">
+    <mat-card>
+      <!-- show calender-->
+      <form #f="ngForm" (ngSubmit)="f.form.valid && book()">
+        <mat-card-header>
+          <mat-card-title>นัดหมายบริจาคเลือด</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayoutAlign="center center">
+          <div fxFlex="90%">
+
+            <div fxLayout="row wrap" fxLayoutGap="8px" fxLayoutAlign="center center">
+              <div fxFlex="50%" fxFlex.xs="100%">
+                <mat-calendar [dateFilter]="dateFilter" [selected]="form.selectedDate"
+                  (selectedChange)="onSelect($event)"></mat-calendar>
+              </div>
+              <div fxFlex="100%">
+                <!-- เลือกศูนย์บริจาค -->
+                <mat-form-field>
+                  <!-- nodes -->
+                  <mat-select placeholder="เลือกศูนย์บริจาค" [(ngModel)]="form.node" #node="ngModel" name="node"
+                    required>
+                    <mat-option *ngFor="let node of nodes" [value]="node.id">
+                      {{node.location_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button mat-raised-button color="primary" type="submit">บันทึก</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>

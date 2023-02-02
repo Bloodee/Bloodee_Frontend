@@ -44,7 +44,7 @@ export class UserService {
     weight: number,
     subdistrict_id: number,
     addr: string,
-    sex : string,
+    sex: string,
     mobile: string,
     email: string,
     occupation: string,
@@ -151,4 +151,20 @@ export class UserService {
       q_7_detail,
     }, httpOptions)
   }
+
+  // Get Booking
+  getBooking(): Observable<any> {
+    return this.http.get(Main_API + 'book/get', httpOptions);
+  }
+
+  updateBooking(
+    node_id: string,
+    booking_date: Date,
+  ) {
+    return this.http.post(Main_API + 'book/update', {
+      node_id,
+      booking_date,
+    }, httpOptions);
+  }
+
 }
