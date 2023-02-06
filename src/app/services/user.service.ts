@@ -167,4 +167,8 @@ export class UserService {
     }, httpOptions);
   }
 
+  getHealthCheck(): Observable<any> {
+    return this.http.get(Main_API + 'healthchecklist/avaliability/get', httpOptions);
+  }
+
 }

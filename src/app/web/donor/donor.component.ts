@@ -169,20 +169,7 @@ export class DonorComponent implements OnInit {
     name: string,
     price: number,
     checked: boolean
-  }[] = [
-      {
-        id: 1,
-        name: 'ตรวจวัดระดับน้ำตาลในเลือด',
-        price: 100,
-        checked: false
-      },
-      {
-        id: 2,
-        name: 'ตรวจวัดระดับคอเลสเตอรอลในเลือด',
-        price: 100,
-        checked: false
-      }
-    ]
+  }[] = []
   total_price: number = 0;
   constructor(private router: Router, private userService: UserService,
     private tokenService: TokenStorageService
@@ -192,6 +179,7 @@ export class DonorComponent implements OnInit {
     this.calldata();
     this.callProvince();
     this.callNode();
+    this.callHealth();
     if (!this.tokenService.isSignIn()) {
       this.router.navigate(['/login']);
     }
@@ -268,6 +256,25 @@ export class DonorComponent implements OnInit {
           }
         })
 
+      }
+    })
+  }
+
+  callHealth() {
+    this.userService.getHealthCheck().subscribe({
+      next: (data) => {
+        this.package_list = data.healthchecklist.map((item: {
+          id: number,
+          healthcheck_name: string,
+          healthcheck_price: number,
+        }) => {
+          return {
+            id: item.id,
+            name: item.healthcheck_name,
+            price: item.healthcheck_price,
+            checked: false
+          }
+        })
       }
     })
   }
