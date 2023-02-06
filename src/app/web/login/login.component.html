@@ -9,40 +9,40 @@
             <img src="./assets/images/logo.png" style="width: 60px;">
           </div>
           <h2 mat-dialog-title align="center">
-            <b>เข้าสู่ระบบ</b>
+            <b>Log in</b>
           </h2>
           <form class="login-main-form" name="form" (ngSubmit)="(f.form.valid) && submitLogin()" #f="ngForm">
             <mat-dialog-content class="mat-typography">
               <mat-form-field appearance="outline">
-                <mat-label>ชื่อผู้ใช้งาน</mat-label>
+                <mat-label>Username</mat-label>
                 <input matInput placeholder="Username" type="text" name="username"
                   [(ngModel)]="form.username" #username="ngModel" required />
                 <mat-icon matSuffix>account_circle</mat-icon>
               </mat-form-field>
 
               <mat-form-field appearance="outline">
-                <mat-label>รหัสผ่าน</mat-label>
-                <input matInput placeholder="รหัสผ่าน" type="password" name="password"
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" type="password" name="password"
                   [(ngModel)]="form.password" #password="ngModel" required />
                 <mat-icon matSuffix>lock</mat-icon>
               </mat-form-field>
 
               <div align="center">
                 <!-- ยังไม่มีบัญชี using button -->
-                <button mat-button color="primary" routerLink="/register">สมัครสมาชิก</button>
+                <button mat-button color="primary" routerLink="/register">Register</button>
               </div>
 
               <div style="color: red;" align="center" *ngIf="isLoginFailed">
                 <span class="material-icons-outlined" style="font-size: 15px">
                   info
                 </span>
-                เข้าสู่ระบบไม่สำเร็จ! กรุณาตรวจสอบข้อมูล
+                Login failed! Please check the information.
               </div>
               <br>
             </mat-dialog-content>
             <mat-dialog-actions align="center">
               &nbsp;
-              <button mat-button mat-raised-button color="primary" type="submit">เข้าสู่ระบบ</button>
+              <button mat-button mat-raised-button color="primary" type="submit">Log in</button>
             </mat-dialog-actions>
           </form>
 
