@@ -83,7 +83,7 @@ export class BookComponent implements OnInit {
         console.log(data);
         Swal.fire({
           icon: 'success',
-          title: 'บันทึกข้อมูลสำเร็จ',
+          title: 'Appointment Created',
           showConfirmButton: true,
         }).then(() => {
           this.router.navigateByUrl('/que');

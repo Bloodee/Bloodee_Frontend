@@ -96,7 +96,9 @@ export class DonorComponent implements OnInit {
     q_37: boolean | null,
     q_5_detail: string,
     q_7_detail: string,
-    node: string
+    node: string,
+    package_id: string,
+    approve: boolean,
   } = {
       q_1: null,
       q_2: null,
@@ -137,14 +139,14 @@ export class DonorComponent implements OnInit {
       q_37: null,
       q_5_detail: '',
       q_7_detail: '',
-      node: ''
+      node: '',
+      package_id: '0',
+      approve: false,
     };
-  bloodCenter = [
-    {
-      id: 1,
-      name: 'โรงพยาบาลเชียงใหม่',
-    }
-  ]
+  bloodCenter: {
+    id: number,
+    name: string,
+  }[] = []
   provinces: {
     id: number,
     name_th: string,
@@ -168,6 +170,7 @@ export class DonorComponent implements OnInit {
     id: number,
     name: string,
     price: number,
+    full_price: number,
     checked: boolean
   }[] = []
   total_price: number = 0;
@@ -180,6 +183,7 @@ export class DonorComponent implements OnInit {
     this.callProvince();
     this.callNode();
     this.callHealth();
+    this.callReserve();
     if (!this.tokenService.isSignIn()) {
       this.router.navigate(['/login']);
     }
@@ -211,8 +215,6 @@ export class DonorComponent implements OnInit {
   calldata() {
     this.userService.getUserData().subscribe({
       next: (data) => {
-        console.log(data.userdata)
-        console.log(data.userdata.subdistricts.districts.provinces.id)
         this.form.pname = data.userdata.pname
         this.form.fname = data.userdata.fname
         this.form.mname = data.userdata.mname
@@ -263,18 +265,85 @@ export class DonorComponent implements OnInit {
   callHealth() {
     this.userService.getHealthCheck().subscribe({
       next: (data) => {
-        this.package_list = data.healthchecklist.map((item: {
+        this.package_list = data.healthchecklists.map((item: {
           id: number,
           healthcheck_name: string,
           healthcheck_price: number,
+          healthcheck_fullprice: number,
         }) => {
           return {
             id: item.id,
             name: item.healthcheck_name,
             price: item.healthcheck_price,
+            full_price: item.healthcheck_fullprice,
             checked: false
           }
         })
+      }
+    })
+  }
+
+  callReserve() {
+    // getReserve
+    this.userService.getReserve().subscribe({
+      next: (data) => {
+        this.form2.q_1 = data.reserve.q1
+        this.form2.q_2 = data.reserve.q2
+        this.form2.q_3 = data.reserve.q3
+        this.form2.q_4 = data.reserve.q4
+        this.form2.q_5 = data.reserve.q5
+        this.form2.q_6 = data.reserve.q6
+        this.form2.q_7 = data.reserve.q7
+        this.form2.q_8 = data.reserve.q8
+        this.form2.q_9 = data.reserve.q9
+        this.form2.q_10 = data.reserve.q10
+        this.form2.q_11 = data.reserve.q11
+        this.form2.q_12 = data.reserve.q12
+        this.form2.q_13 = data.reserve.q13
+        this.form2.q_14 = data.reserve.q14
+        this.form2.q_15 = data.reserve.q15
+        this.form2.q_16 = data.reserve.q16
+        this.form2.q_17 = data.reserve.q17
+        this.form2.q_18 = data.reserve.q18
+        this.form2.q_19 = data.reserve.q19
+        this.form2.q_20 = data.reserve.q20
+        this.form2.q_21 = data.reserve.q21
+        this.form2.q_22 = data.reserve.q22
+        this.form2.q_23 = data.reserve.q23
+        this.form2.q_24 = data.reserve.q24
+        this.form2.q_25 = data.reserve.q25
+        this.form2.q_26 = data.reserve.q26
+        this.form2.q_27 = data.reserve.q27
+        this.form2.q_28 = data.reserve.q28
+        this.form2.q_29 = data.reserve.q29
+        this.form2.q_30 = data.reserve.q30
+        this.form2.q_31 = data.reserve.q31
+        this.form2.q_32 = data.reserve.q32
+        this.form2.q_33 = data.reserve.q33
+        this.form2.q_34 = data.reserve.q34
+        this.form2.q_35 = data.reserve.q35
+        this.form2.q_36 = data.reserve.q36
+        this.form2.q_37 = data.reserve.q37
+        this.form2.q_5_detail = data.reserve.q_5_detail
+        this.form2.q_7_detail = data.reserve.q_7_detail
+        console.log(data);
+        console.log(data.reserve.user_healthcheck_selection_user_healthcheck_selection_reserve_idToreserve_id);
+        this.package_list.forEach((item: {
+          id: number,
+          name: string,
+          price: number,
+          full_price: number,
+          checked: boolean
+        }) => {
+          data.reserve.user_healthcheck_selection_user_healthcheck_selection_reserve_idToreserve_id.map((item2: {
+            lab_select: number
+          }) => {
+            if (item.id == item2.lab_select) {
+              item.checked = true
+            }
+          })
+        })
+        this.update_price();
       }
     })
   }
@@ -318,83 +387,107 @@ export class DonorComponent implements OnInit {
     } else {
       Swal.fire({
         icon: 'error',
-        title: 'กรุณาตอบคำถามให้ครบถ้วน',
+        title: 'Please Answer All Question',
+        showConfirmButton: false,
+      })
+    }
+  }
+  next2(stepper: MatStepper) {
+    if (this.form2.node) {
+      window.scrollTo(0, 0);
+      stepper.next();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Choose Blood Donation Center',
         showConfirmButton: false,
       })
     }
   }
   confirmed() {
     // form var for send to api
-    this.userService.postReserve(
-      this.form.czid,
-      this.form.pname,
-      this.form.fname,
-      this.form.mname,
-      this.form.lname,
-      this.form.dob ? this.form.dob : new Date(),
-      this.form.weight ? this.form.weight : 0,
-      this.form.subdistrict ? this.form.subdistrict : 0,
-      this.form.address,
-      this.form.sex,
-      this.form.mobile,
-      this.form.email,
-      this.form.occupation,
-      this.form.old_pname,
-      this.form.old_fname,
-      this.form.old_lname,
-      this.form.old_mname,
-      this.form2.q_1 ? this.form2.q_1 : false,
-      this.form2.q_2 ? this.form2.q_2 : false,
-      this.form2.q_3 ? this.form2.q_3 : false,
-      this.form2.q_4 ? this.form2.q_4 : false,
-      this.form2.q_5 ? this.form2.q_5 : false,
-      this.form2.q_6 ? this.form2.q_6 : false,
-      this.form2.q_7 ? this.form2.q_7 : false,
-      this.form2.q_8 ? this.form2.q_8 : false,
-      this.form2.q_9 ? this.form2.q_9 : false,
-      this.form2.q_10 ? this.form2.q_10 : false,
-      this.form2.q_11 ? this.form2.q_11 : false,
-      this.form2.q_12 ? this.form2.q_12 : false,
-      this.form2.q_13 ? this.form2.q_13 : false,
-      this.form2.q_14 ? this.form2.q_14 : false,
-      this.form2.q_15 ? this.form2.q_15 : false,
-      this.form2.q_16 ? this.form2.q_16 : false,
-      this.form2.q_17 ? this.form2.q_17 : false,
-      this.form2.q_18 ? this.form2.q_18 : false,
-      this.form2.q_19 ? this.form2.q_19 : false,
-      this.form2.q_20 ? this.form2.q_20 : false,
-      this.form2.q_21 ? this.form2.q_21 : false,
-      this.form2.q_22 ? this.form2.q_22 : false,
-      this.form2.q_23 ? this.form2.q_23 : false,
-      this.form2.q_24 ? this.form2.q_24 : false,
-      this.form2.q_25 ? this.form2.q_25 : false,
-      this.form2.q_26 ? this.form2.q_26 : false,
-      this.form2.q_27 ? this.form2.q_27 : false,
-      this.form2.q_28 ? this.form2.q_28 : false,
-      this.form2.q_29 ? this.form2.q_29 : false,
-      this.form2.q_30 ? this.form2.q_30 : false,
-      this.form2.q_31 ? this.form2.q_31 : false,
-      this.form2.q_32 ? this.form2.q_32 : false,
-      this.form2.q_33 ? this.form2.q_33 : false,
-      this.form2.q_34 ? this.form2.q_34 : false,
-      this.form2.q_35 ? this.form2.q_35 : false,
-      this.form2.q_36 ? this.form2.q_36 : false,
-      this.form2.q_37 ? this.form2.q_37 : false,
-      this.form2.q_5_detail,
-      this.form2.q_7_detail
-    ).subscribe({
-      next: (data) => {
-        console.log(data)
-        if (data.status) {
-          Swal.fire({
-            icon: 'success',
-            title: 'บันทึกข้อมูลสำเร็จ',
-            showConfirmButton: false,
-          })
-          this.router.navigate(['/'])
-        }
-      },
-    })
+    if (this.form2.approve == true) {
+      this.userService.postReserve(
+        this.form.czid,
+        this.form.pname,
+        this.form.fname,
+        this.form.mname,
+        this.form.lname,
+        this.form.dob ? this.form.dob : new Date(),
+        this.form.weight ? this.form.weight : 0,
+        this.form.subdistrict ? this.form.subdistrict : 0,
+        this.form.address,
+        this.form.sex,
+        this.form.mobile,
+        this.form.email,
+        this.form.occupation,
+        this.form.old_pname,
+        this.form.old_fname,
+        this.form.old_lname,
+        this.form.old_mname,
+        this.form2.q_1 ? this.form2.q_1 : false,
+        this.form2.q_2 ? this.form2.q_2 : false,
+        this.form2.q_3 ? this.form2.q_3 : false,
+        this.form2.q_4 ? this.form2.q_4 : false,
+        this.form2.q_5 ? this.form2.q_5 : false,
+        this.form2.q_6 ? this.form2.q_6 : false,
+        this.form2.q_7 ? this.form2.q_7 : false,
+        this.form2.q_8 ? this.form2.q_8 : false,
+        this.form2.q_9 ? this.form2.q_9 : false,
+        this.form2.q_10 ? this.form2.q_10 : false,
+        this.form2.q_11 ? this.form2.q_11 : false,
+        this.form2.q_12 ? this.form2.q_12 : false,
+        this.form2.q_13 ? this.form2.q_13 : false,
+        this.form2.q_14 ? this.form2.q_14 : false,
+        this.form2.q_15 ? this.form2.q_15 : false,
+        this.form2.q_16 ? this.form2.q_16 : false,
+        this.form2.q_17 ? this.form2.q_17 : false,
+        this.form2.q_18 ? this.form2.q_18 : false,
+        this.form2.q_19 ? this.form2.q_19 : false,
+        this.form2.q_20 ? this.form2.q_20 : false,
+        this.form2.q_21 ? this.form2.q_21 : false,
+        this.form2.q_22 ? this.form2.q_22 : false,
+        this.form2.q_23 ? this.form2.q_23 : false,
+        this.form2.q_24 ? this.form2.q_24 : false,
+        this.form2.q_25 ? this.form2.q_25 : false,
+        this.form2.q_26 ? this.form2.q_26 : false,
+        this.form2.q_27 ? this.form2.q_27 : false,
+        this.form2.q_28 ? this.form2.q_28 : false,
+        this.form2.q_29 ? this.form2.q_29 : false,
+        this.form2.q_30 ? this.form2.q_30 : false,
+        this.form2.q_31 ? this.form2.q_31 : false,
+        this.form2.q_32 ? this.form2.q_32 : false,
+        this.form2.q_33 ? this.form2.q_33 : false,
+        this.form2.q_34 ? this.form2.q_34 : false,
+        this.form2.q_35 ? this.form2.q_35 : false,
+        this.form2.q_36 ? this.form2.q_36 : false,
+        this.form2.q_37 ? this.form2.q_37 : false,
+        this.form2.q_5_detail,
+        this.form2.q_7_detail,
+        // health package
+        [{ id: parseInt(this.form2.package_id) }]
+
+      ).subscribe({
+        next: (data) => {
+          if (data.status) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Thank you',
+              text: 'Please present your ID card at the counter',
+              showConfirmButton: true,
+            }).then(() => {
+              this.router.navigate(['/'])
+            })
+          }
+        },
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Please Approve',
+        showConfirmButton: false,
+      })
+    }
   }
 
 }

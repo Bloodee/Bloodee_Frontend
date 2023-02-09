@@ -91,6 +91,7 @@ export class UserService {
     q37: boolean | null,
     q_5_detail: string,
     q_7_detail: string,
+    healthpackage_id: { id: number }[]
   ): Observable<any> {
     return this.http.post(Main_API + 'reserve/create', {
       czid,
@@ -149,6 +150,7 @@ export class UserService {
       q37,
       q_5_detail,
       q_7_detail,
+      healthpackage_id,
     }, httpOptions)
   }
 
@@ -169,6 +171,10 @@ export class UserService {
 
   getHealthCheck(): Observable<any> {
     return this.http.get(Main_API + 'healthchecklist/avaliability/get', httpOptions);
+  }
+
+  getReserve(): Observable<any> {
+    return this.http.get(Main_API + 'reserve/get', httpOptions);
   }
 
 }

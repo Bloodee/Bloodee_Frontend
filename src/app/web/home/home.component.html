@@ -2,52 +2,13 @@
   <div fxFlex="65%" fxFlex.xs="90%">
     <div fxLayout="row warp" fxLayoutGap="8px grid">
       <div fxFlex="100%" fxLayoutAlign="center center">
-        <!-- img logo -->
-        <!-- <img src="assets/images/logo1.png" fxLayoutAlign="center" fxFlex="200px" fxFlex.xl="100px"> -->
       </div>
-      <!-- <div fxFlex="100%">
-        <h2 style="font-size: 3.5em; color:red" fxLayoutAlign="center">
-          Bloodee
-        </h2>
-      </div> -->
+
       <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
-
-        <!-- <mat-card class="mat-elevation-z3" fxFlex="100%" style="background-color: rgb(248, 160, 160);">
-          <mat-card-header>
-            <mat-card-title>
-              {{
-              carousel_text[carousel].title
-              }}
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <h2 fxLayoutAlign="center" style="font-size: 2em;">
-              {{
-              carousel_text[carousel].description
-              }}
-            </h2>
-            <h4 fxLayoutAlign="end" style="font-size: 1.5em;">
-              {{carousel_text[carousel].subDescription}}
-            </h4>
-          </mat-card-content>
-          <mat-card-actions>
-            <div fxLayout="row warp" fxLayoutGap="8px grid" fxLayoutAlign="center">
-              <div *ngFor="let item of carousel_text;let i = index">
-                <mat-icon *ngIf="i != carousel" (click)="carousel = i" style="color: gray; cursor: pointer;">
-                  circle
-                </mat-icon>
-                <mat-icon *ngIf="i == carousel" style="color: black; ">
-                  circle
-                </mat-icon>
-              </div>
-            </div>
-          </mat-card-actions>
-        </mat-card> -->
-
         <img src="assets/images/banner.jpg">
       </div>
 
-      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="homeshow == 1">
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="!check_register">
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
@@ -62,7 +23,22 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="homeshow == 1">
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="check_register">
+        <mat-card class="mat-elevation-z3" fxFlex="100%">
+          <mat-card-header>
+            <mat-card-title>
+              <h2>Change Register Data</h2>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <button mat-raised-button color="primary" fxFlex="100%" routerLink="donor">
+              Change Register Data
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="!check_appointment">
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
@@ -77,29 +53,18 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <div fxFlex="66.6%" fxFlex.xs="100%" *ngIf="homeshow == 2">
+      <div fxFlex="33.3%" fxFlex.xs="100%" *ngIf="check_appointment">
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
-              <h2>คิวที่</h2>
+              <h2>Appointment</h2>
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content fxLayoutAlign="center">
-            <h2 style="font-size: 2em;">ลำดับ คิว ที่ 1
-              เวลา 10:00 น.</h2>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div fxFlex="66.6%" fxFlex.xs="100%" *ngIf="homeshow == 3">
-        <mat-card class="mat-elevation-z3" fxFlex="100%">
-          <mat-card-header>
-            <mat-card-title>
-              <h2>นัดหมายบริจาค</h2>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content fxLayoutAlign="center">
-            <p style="font-size: 2em;">วันที่ 1 มกราคม 2566</p>
-            <p style="font-size: 1.5em;">ศูนย์บริจาค </p>
+          <mat-card-content>
+            <button mat-raised-button color="primary" fxFlex="100%" routerLink="que">
+              Appointment
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
           </mat-card-content>
         </mat-card>
       </div>
@@ -107,12 +72,12 @@
         <mat-card class="mat-elevation-z3" fxFlex="100%">
           <mat-card-header>
             <mat-card-title>
-              <h2>Blood result</h2>
+              <h2>Health Check Result</h2>
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <button mat-raised-button color="primary" fxFlex="100%" routerLink="status">
-              Blood result
+              Health Check Result
               <mat-icon>arrow_forward</mat-icon>
             </button>
           </mat-card-content>

@@ -9,7 +9,7 @@
     <a mat-button class="toolbar-button" routerLink="/">
       <!-- logo -->
       <!-- styling -->
-      <span class="material-icons-outlined">home</span> หน้าแรก</a>
+      <span class="material-icons-outlined">home</span> Home</a>
 
     <!-- All User -->
 
@@ -23,11 +23,11 @@
   <span class="web-spacer"></span>
   <a mat-button class="toolbar-button" routerLink="/login" *ngIf="!isLogin"><span
       class="material-icons-outlined">login</span>
-    เข้าสู่ระบบ</a>
+    Login</a>
   <a mat-button class="toolbar-button" (click)="logout()" *ngIf="isLogin">
     <span class="material-icons-outlined">logout</span>
     <span fxShow="true" fxHide.lt-lg="true">
-      ออกจากระบบ
+      Logout
     </span>
   </a>
 </mat-toolbar>
@@ -41,14 +41,14 @@
       <a mat-button class="sidebar-button" routerLink="/">
         <!-- logo img -->
 
-        <span class="material-icons">home</span> หน้าแรก</a>
+        <span class="material-icons">home</span> Home</a>
       <!-- All User -->
 
     </div>
     <hr width="90%">
     <div fxLayout="column">
       <a mat-button class="sidebar-button" routerLink="/login"><span class="material-icons">login</span>
-        เข้าสู่ระบบ</a>
+        Login</a>
     </div>
   </mat-sidenav>
   <!-- Data in page -->
@@ -56,7 +56,5 @@
     <div fxFlex="100%" fxFlex.xs="100%" style="height: 100vh">
       <router-outlet></router-outlet>
     </div>
-    <!-- Footer -->
-
   </mat-sidenav-content>
 </mat-sidenav-container>

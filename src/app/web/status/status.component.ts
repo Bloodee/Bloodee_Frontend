@@ -11,5 +11,6 @@ export class StatusComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+// table  datasources
+  displayedColumns: string[] = ['name','Mean',""];
 }

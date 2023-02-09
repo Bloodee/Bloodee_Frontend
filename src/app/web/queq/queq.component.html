@@ -11,24 +11,35 @@
 
       </mat-card-title>
       <mat-card-subtitle style="font-size: 2em; color:black" fxLayoutAlign="center center">
-        การจองรอบปัจจุบัน
+        <!-- Trans to eng -->
+        Current Appointment
 
       </mat-card-subtitle>
       <mat-card-content fxLayoutAlign="center center" fxLayout="column">
         <h2 style="font-size: 1em;">
-          นัดหมายวันที่
+          Appointment Date
         </h2>
         <h2 style="font-size: 1.5em;">
           {{showed_data.booking_date | date:'dd MMMM yyyy'}}
         </h2>
         <!-- ศูนย์บริการ -->
         <h2 style="font-size: 1em;">
-          ศูนย์บริการ
+          Blood Donation Center
         </h2>
         <h2 style="font-size: 1.7em;">
           {{showed_data.node_name}}
         </h2>
       </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center center">
+        <!-- make back button and edit booking  -->
+        <button mat-raised-button color="primary" routerLink="/">
+          Back to Home
+        </button>
+        <button mat-raised-button color="primary" routerLink="/booking">
+          Edit Appointment
+        </button>
+
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>

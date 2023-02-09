@@ -1,4 +1,5 @@
-<div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%" style="padding-top:20px ;padding-bottom:20px;">
+<div fxLayoutAlign="center center" fxLayout="row wrap" style="height: 100%;" fxFlex="100%"
+  style="padding-top:20px ;padding-bottom:20px;">
   <div fxFlex="80%" fxFlex.xs="90%">
     <mat-stepper [linear]="true" #stepper orientation="vertical">
       <mat-step [stepControl]="f.control">
@@ -64,8 +65,8 @@
                       <!-- น้ำหนัก -->
                       <div fxFlex="50%" fxFlex.xs="100%">
                         <mat-form-field>
-                          <input matInput placeholder="Weight" type="number" [(ngModel)]="form.weight"
-                            #weight="ngModel" name="weight">
+                          <input matInput placeholder="Weight" type="number" [(ngModel)]="form.weight" #weight="ngModel"
+                            name="weight">
                         </mat-form-field>
                       </div>
                       <!-- ที่อยู่  -->
@@ -80,7 +81,7 @@
                         <mat-form-field>
                           <mat-select placeholder="Province" required [(ngModel)]="form.province" #province="ngModel"
                             name="province" (selectionChange)="callDistrict()">
-                            <mat-option [value]="item.id" *ngFor="let item of provinces">{{item.name_th}}</mat-option>
+                            <mat-option [value]="item.id" *ngFor="let item of provinces">{{item.name_en}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
@@ -89,25 +90,25 @@
                         <mat-form-field>
                           <mat-select placeholder="District" required [(ngModel)]="form.district" #district="ngModel"
                             name="district" (selectionChange)="callSubDistrict()" [disabled]="districts.length == 0">
-                            <mat-option [value]="item.id" *ngFor="let item of districts">{{item.name_th}}</mat-option>
+                            <mat-option [value]="item.id" *ngFor="let item of districts">{{item.name_en}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                       <!-- ตำบล -->
                       <div fxFlex="33%" fxFlex.xs="100%">
                         <mat-form-field>
-                          <mat-select placeholder="Subdistrict" required [(ngModel)]="form.subdistrict" #subdistrict="ngModel"
-                            name="subdistrict" [disabled]="subdistricts.length == 0">
+                          <mat-select placeholder="Subdistrict" required [(ngModel)]="form.subdistrict"
+                            #subdistrict="ngModel" name="subdistrict" [disabled]="subdistricts.length == 0">
                             <mat-option [value]="item.id"
-                              *ngFor="let item of subdistricts">{{item.name_th}}</mat-option>
+                              *ngFor="let item of subdistricts">{{item.name_en}}</mat-option>
                           </mat-select>
                         </mat-form-field>
                       </div>
                       <!-- mobile and email -->
                       <div fxFlex="50%" fxFlex.xs="100%">
                         <mat-form-field>
-                          <input matInput placeholder="Mobile" mask="000-000-0000" required
-                            [(ngModel)]="form.mobile" #mobile="ngModel" name="mobile">
+                          <input matInput placeholder="Mobile" mask="000-000-0000" required [(ngModel)]="form.mobile"
+                            #mobile="ngModel" name="mobile">
                         </mat-form-field>
                       </div>
                       <div fxFlex="50%" fxFlex.xs="100%">
@@ -186,28 +187,73 @@
                     <!-- checkbox for loop package_list  -->
                     <!-- make checkbox in row -->
                     <div fxLayout="row wrap" fxLayoutGap="8px grid">
-                      <div fxFlex="50%" fxFlex.xs="100%" *ngFor="let item of package_list">
-                        <mat-checkbox [(ngModel)]="item.checked" (change)="update_price()">
-                          {{item.name}}
-                          <!-- show price 2 decimal-->
-                          <span>({{
-                            item.price | number: '1.2-2'
-                            }} บาท)</span>
-                        </mat-checkbox>
+                      <!-- radio -->
+                      <div fxFlex="100%" fxFlex.xs="100%">
+                        <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                          <div fxFlex="100%" fxFlex.xs="100%">
+                            <mat-radio-group [(ngModel)]="form2.package_id" #package_id="ngModel" name="package_id">
+                              <div fxLayout="row wrap" fxLayoutGap="8px grid">
+
+                                <mat-radio-button value="0" fxFlex="100%">
+                                  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                                    <div fxFlex="100%" fxFlex.xs="100%">
+                                      <h2 style="font-weight: bold; font-size:1.2em;">
+                                        Stay in Touch<br>
+                                        0 Baht
+                                      </h2>
+                                    </div>
+                                  </div>
+                                </mat-radio-button>
+                                <mat-radio-button value="1" fxFlex="100%">
+                                  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                                    <div fxFlex="100%" fxFlex.xs="100%">
+                                      <h2 style="font-weight: bold; font-size:1.2em;">
+                                        Stay Tuned <br>
+                                        1,000 Baht
+                                      </h2>
+                                    </div>
+                                  </div>
+                                </mat-radio-button>
+                                <mat-radio-button value="2" fxFlex="100%">
+                                  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                                    <div fxFlex="100%" fxFlex.xs="100%">
+                                      <h2 style="font-weight: bold;font-size:1.2em;">
+                                        Stay Healthy <br>3,000 Baht
+                                      </h2>
+                                    </div>
+                                  </div>
+                                </mat-radio-button>
+                                <mat-radio-button value="3" fxFlex="100%">
+                                  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+                                    <div fxFlex="100%" fxFlex.xs="100%">
+                                      <h2 style="font-weight: bold;font-size:1.2em;">
+                                        Stay Fit<br>5,000 Baht
+                                      </h2>
+                                    </div>
+                                  </div>
+                                </mat-radio-button>
+                              </div>
+                            </mat-radio-group>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="8px grid">
-                      <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
-                        <h2 style="font-weight: bold;">
-                          <br>
-                          Total
-                          <span>
-                            {{
-                            total_price | number: '1.2-2'
-                            }}
-                          </span>
-                          Baht
-                        </h2>
+                      <div fxLayout="row" fxLayoutGap="8px grid">
+                        <div fxFlex="100%" fxFlex.xs="100%" fxLayoutAlign="center">
+                          <h2>
+                            <span style="font-weight:bold">Benefit : </span>
+                            <!-- description with if validate -->
+                            <span *ngIf="form2.package_id == '0'">Non Benefit</span>
+                            <span *ngIf="form2.package_id == '1'"> Services after donating blood, such as
+                              private massage services, food and beverage services, waiting area services, etc.</span>
+                            <span *ngIf="form2.package_id == '2'"> Services after donating blood such as private
+                              massage services, food and beverage services, accommodation services, etc., along with a
+                              comprehensive health check-up package with the hospital that is a blood donation
+                              center.</span>
+                            <span *ngIf="form2.package_id == '3'"> Services after donating blood, such as
+                              private massage services, food and beverage services, accommodation services, etc., along
+                              with comprehensive health care services. From food care to daily life</span>
+                          </h2>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -239,7 +285,7 @@
                         </h2>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You feel fine, healthy
-                      and ready to donate blood </div>
+                        and ready to donate blood </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_1 = true"
                           [style.background]="form2.q_1 == true ? '#73c7af' : '#ffffff' ">
@@ -266,7 +312,8 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You eat foods that are high in fat.
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You eat foods that are high in
+                        fat.
                         within the past 6 hours </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_3 = true"
@@ -280,8 +327,8 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have a congenital disease or have ever had a disease
-                        (Please Specify) </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have a congenital disease or
+                        have ever had a disease</div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_4 = true"
                           [style.background]="form2.q_4 == true ? '#73c7af' : '#ffffff' ">
@@ -312,8 +359,8 @@
                       <div fxFlex="100%">
                         <!-- input box -->
                         <mat-form-field *ngIf="form2.q_5 == true" fxFlex="100%" fxFlex.xs="100%">
-                          <input matInput placeholder="ระบุยาปฏิชีวนะที่ท่านรับประทาน" [(ngModel)]="form2.q_5_detail"
-                            name="q_5_detail" #q_5_detail="ngModel">
+                          <input matInput placeholder="Please specify the name of the drug"
+                            [(ngModel)]="form2.q_5_detail" name="q_5_detail" #q_5_detail="ngModel">
                         </mat-form-field>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You take aspirin
@@ -355,7 +402,8 @@
                         </mat-form-field>
 
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you consumed alcohol within 24
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you consumed alcohol within
+                        24
                         hours ago </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_8 = true"
@@ -390,7 +438,7 @@
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center" *ngIf="form.sex == '2'">
                         Have you ever been pregnant
-                         or miscarriage before </div>
+                        or miscarriage before </div>
                       <div fxFlex="15%" fxFlex.xs="50%" *ngIf="form.sex == '2'">
                         <mat-card style="text-align: center;" (click)="form2.q_10 = true"
                           [style.background]="form2.q_10 == true ? '#73c7af' : '#ffffff' ">
@@ -405,7 +453,7 @@
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center" *ngIf="form.sex == '2'">
                         You are pregnant
-                         or breastfeeding </div>
+                        or breastfeeding </div>
                       <div fxFlex="15%" fxFlex.xs="50%" *ngIf="form.sex == '2'">
                         <mat-card style="text-align: center;" (click)="form2.q_11 = true"
                           [style.background]="form2.q_11 == true ? '#73c7af' : '#ffffff' ">
@@ -420,7 +468,7 @@
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center" *ngIf="form.sex == '2'">
                         You have given birth or miscarriage within 6
-                         a month ago </div>
+                        a month ago </div>
                       <div fxFlex="15%" fxFlex.xs="50%" *ngIf="form.sex == '2'">
                         <mat-card style="text-align: center;" (click)="form2.q_12 = true"
                           [style.background]="form2.q_12 == true ? '#73c7af' : '#ffffff' ">
@@ -438,9 +486,9 @@
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
                         Have you or your partner ever had sex with: someone other than your partner
-                         /
-                         Sex workers / drug users / people who may be infected with HIV
-                         or other sexually transmitted diseases </div>
+                        /
+                        Sex workers / drug users / people who may be infected with HIV
+                        or other sexually transmitted diseases </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_13 = true"
                           [style.background]="form2.q_13 == true ? '#73c7af' : '#ffffff' ">
@@ -484,9 +532,8 @@
                       <div fxFlex="100%">
                         <h2>History of risk of various infections</h2>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have filling your teeth and scaling within 3
-                        Past day / tooth extraction, root canal treatment
-                        within the past 7 days
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have filling your teeth and
+                        scaling within 3 past day / tooth extraction, root canal treatment within the past 7 days
                       </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_16 = true"
@@ -500,8 +547,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have diarrhea, diarrhea within 7
-                        days ago </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have filling your teeth and
+                        scaling within 3 past day / tooth extraction, root canal treatment within the past 7 days
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_17 = true"
                           [style.background]="form2.q_17 == true ? '#73c7af' : '#ffffff' ">
@@ -514,9 +562,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever had your ears pierced, skin pierced, tattooed?
-                        Remove tattoos, acupuncture, within 4
-                        a month ago </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever had your ears
+                        pierced, skin pierced, tattooed, tattoo removal, acupuncture, within 4 months ago?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_18 = true"
                           [style.background]="form2.q_18 == true ? '#73c7af' : '#ffffff' ">
@@ -529,8 +577,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have had minor surgery within 1
-                        days ago </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have had minor surgery within
+                        7 days ago
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_19 = true"
                           [style.background]="form2.q_19 == true ? '#73c7af' : '#ffffff' ">
@@ -543,8 +592,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have had major surgery within 6
-                        a month ago </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have had major surgery within
+                        6 months ago
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_20 = true"
                           [style.background]="form2.q_20 == true ? '#73c7af' : '#ffffff' ">
@@ -557,8 +607,8 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever been sick and received blood?
-                        Blood components within the past 1 year
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever been sick and
+                        received blood or blood components within the past 1 year?
                       </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_21 = true"
@@ -572,8 +622,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever received an organ transplant?
-                        or hematopoietic stem cells
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever received an organ
+                        transplant or hematopoietic stem cells?
+
                       </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_22 = true"
@@ -587,8 +638,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever been touched by a needle stained with black blood?
-                        in the past 1 year </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever been stabed by a
+                        needle stained with black blood in the past 1 year?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_23 = true"
                           [style.background]="form2.q_23 == true ? '#73c7af' : '#ffffff' ">
@@ -601,8 +653,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever had hepatitis?
-                        after 11 years old </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever had hepatitis after
+                        being 11 years old?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_24 = true"
                           [style.background]="form2.q_24 == true ? '#73c7af' : '#ffffff' ">
@@ -616,9 +669,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        Your partner or someone in your family hepatitis
-                         in the period
-                         1 year ago </div>
+                        Your partner or someone in your family had hepatitis in the period 1 year ago
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_25 = true"
                           [style.background]="form2.q_25 == true ? '#73c7af' : '#ffffff' ">
@@ -632,7 +684,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        Have you ever been diagnosed as a carrier of hepatitis? </div>
+                        Have you ever been diagnosed as a carrier of hepatitis?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_26 = true"
                           [style.background]="form2.q_26 == true ? '#73c7af' : '#ffffff' ">
@@ -645,8 +698,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever contracted malaria for a while?
-                        3 years ago </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever contracted malaria
+                        for within 3 years ago?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_27 = true"
                           [style.background]="form2.q_27 == true ? '#73c7af' : '#ffffff' ">
@@ -660,8 +714,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        Have you ever been to an area with high levels of malaria in stage 1?
-                         years ago
+                        Have you ever been to an area with high levels of malaria in the past 1 year?
+
                       </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_28 = true"
@@ -676,10 +730,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever had influenza /
-                        Dengue Fever / Chikungunya
-                        /
-                        Zika
-                        or COVID-19 in the past 1 month </div>
+                        Dengue Fever / Chikungunya / Zika or COVID-19 in the past 1 month
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_29 = true"
                           [style.background]="form2.q_29 == true ? '#73c7af' : '#ffffff' ">
@@ -693,7 +745,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        Have you received a prophylactic vaccine in the past 2 months? </div>
+                        Have you received a prophylactic vaccine in the past 2 months?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_30 = true"
                           [style.background]="form2.q_30 == true ? '#73c7af' : '#ffffff' ">
@@ -707,7 +760,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You received the serum within 1
-                        years ago </div>
+                        years ago
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_31 = true"
                           [style.background]="form2.q_31 == true ? '#73c7af' : '#ffffff' ">
@@ -720,7 +774,8 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have a history of drug abuse </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">You have a history of drug abuse
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_32 = true"
                           [style.background]="form2.q_32 == true ? '#73c7af' : '#ffffff' ">
@@ -734,8 +789,8 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        Have you ever been detained or imprisoned in a prison for more than 72 consecutive hours?
-                         in the past 1 year
+                        Have you ever been detained or imprisoned in a prison for more than 72 consecutive hours in the
+                        past 1 year?
                       </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_33 = true"
@@ -749,11 +804,10 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever lost weight, had a fever
-                        Enlarged lymph nodes for no known reason
-                        in term
-                        3
-                        Last month or ever tested positive for HIV </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">Have you ever lost weight, had a
+                        fever Enlarged lymph nodes for no known reason in term 3 Last month or ever tested positive for
+                        HIV?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_34 = true"
                           [style.background]="form2.q_34 == true ? '#73c7af' : '#ffffff' ">
@@ -766,10 +820,10 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">During 1980 - 1996
-                        Have you ever lived in any of these countries?
-                        Accumulated time more than 3
-                        month england northern ireland scotland wales </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">During 1980 - 1996, have you ever
+                        lived in any of these countries in total of more than 3 month: england northern ireland scotland
+                        wales?
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_35 = true"
                           [style.background]="form2.q_35 == true ? '#73c7af' : '#ffffff' ">
@@ -782,10 +836,9 @@
                           No
                         </mat-card>
                       </div>
-                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">During 1980 - 2001
-                        You used to live in France.
-                        and Ireland
-                        for a cumulative period of more than 5 years </div>
+                      <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">During 1980 - 2001, you used to
+                        live in France and Ireland for a cumulative period of more than 5 years
+                      </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_36 = true"
                           [style.background]="form2.q_36 == true ? '#73c7af' : '#ffffff' ">
@@ -799,7 +852,7 @@
                         </mat-card>
                       </div>
                       <div fxFlex="70%" fxFlex.xs="100%" fxLayoutAlign="start center">
-                        He was confident that his blood was safe for his patients. </div>
+                        I am confident that my blood was safe for my patients. </div>
                       <div fxFlex="15%" fxFlex.xs="50%">
                         <mat-card style="text-align: center;" (click)="form2.q_37 = true"
                           [style.background]="form2.q_37 == true ? '#73c7af' : '#ffffff' ">
@@ -829,36 +882,35 @@
           </ng-template>
         </form>
       </mat-step>
-      <mat-step>
+      <mat-step [stepControl]="h.control">
         <ng-template matStepLabel>Blood Donation Center</ng-template>
         <div fxLayout="row warp" fxLayoutGap="8px grid">
           <div fxFlex="100%" fxFlex.xs="100%">
             <mat-card>
-              <mat-card-content>
-                <!-- select label Donation Center -->
-                <div fxLayout="row" fxLayoutGap="8px grid">
-                  <div fxFlex="100%" fxFlex.xs="100%">
-                    <mat-form-field>
-                      <mat-label>Blood Donation Center</mat-label>
-                      <mat-select [(value)]="form2.node">
-                        <mat-option *ngFor="let item of bloodCenter" [value]="item.id">
-                          {{item.name}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+              <form #h="ngForm" name="form" (ngSubmit)="h.form.valid && next2(stepper)" ng-submit>
+                <mat-card-content>
+                  <!-- select label Donation Center -->
+                  <div fxLayout="row" fxLayoutGap="8px grid">
+                    <div fxFlex="100%" fxFlex.xs="100%">
+                      <mat-form-field>
+                        <mat-label>Blood Donation Center</mat-label>
+                        <mat-select [(value)]="form2.node" required>
+                          <mat-option *ngFor="let item of nodes" [value]="item.id">
+                            {{item.location_name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
                   </div>
-                </div>
-
-
-
-              </mat-card-content>
-              <mat-card-actions style="display: flex;
+                </mat-card-content>
+                <mat-card-actions style="display: flex;
                   justify-content: center;
                   align-items: center;
                 ">
-                <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-                <button mat-raised-button color="primary" matStepperNext>Next</button>
-              </mat-card-actions>
+                  <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                  <button mat-raised-button color="primary" type="submit">Next</button>
+                </mat-card-actions>
+              </form>
             </mat-card>
           </div>
         </div>
@@ -869,31 +921,35 @@
           <div fxFlex="100%" fxFlex.xs="100%">
             <mat-card>
               <mat-card-content>
-                <h2 style="font-weight: bold;">I hereby certify that I have provided information and answered truthfully.
+                <h2 style="font-weight: bold;">
+                  I hereby confirm that I have provided accurate information and answered truthfully.
+                  truthfully.
                 </h2>
                 <p>
-                  I would like to donate blood to the National Blood Center, Thai Red Cross Society.
-                   Voluntary use for blood services or medical research*
-                   and acknowledged that blood must be tested for syphilis infection Hepatitis B, C and HIV
-                   before being used for medical purposes
-                   I am confident that my blood is safe for my patients.
-                   However, I have already received information about the benefits and the likelihood of side effects of donating blood.
-                   and willing to donate blood this time
-                   I acknowledge the purpose of collection, processing, use
-                   and fully disclose personal information for medical research and blood services
-                   Signed the applicant …………………………………. date…………………………………………………..
-                   *Public benefit medical research that has passed a review process and has been approved by the Research Ethics Committee of the National Blood Center.
-                   or other related organizations (The Medical Council of Thailand's regulations concerning human beings, 1982)
-                   or further research announced later
-                </p>
 
+                  I would like to donate blood for voluntary use or medical research* and acknowledged that my blood
+                  must be tested for syphilis infection Hepatitis B, C and HIV before being used for medical purposes. I
+                  am confident that my blood is safe for the patients. However, I have already received information
+                  about the benefits and the likelihood of side effects of donating blood and am willing to donate blood
+                  as I acknowledge the purposes of collection, processing, use and fully disclose personal information
+                  for medical research and blood services
+                  *Public benefit medical research that has passed a review process and has been approved by the
+                  Research Ethics Committee of the National Blood Center or other related organizations (The Medical
+                  Council of Thailand's regulations concerning human beings, 1982)
+                </p>
+                <!-- approve checkbox -->
+                <div fxLayout="row" fxLayoutGap="8px grid">
+                  <div fxFlex="100%" fxFlex.xs="100%">
+                    <mat-checkbox [(ngModel)]="form2.approve" required>I understand the conditions</mat-checkbox>
+                  </div>
+                </div>
               </mat-card-content>
               <mat-card-actions style="display: flex;
                   justify-content: center;
                   align-items: center;
                 ">
                 <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-                <button mat-raised-button color="primary" (click)="confirmed()">Next</button>
+                <button mat-raised-button color="primary" (click)="confirmed()">Confirm</button>
               </mat-card-actions>
             </mat-card>
           </div>
