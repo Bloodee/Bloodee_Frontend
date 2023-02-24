@@ -1,52 +1,12 @@
 {
   "routes": [
     {
-      "route": "/",
-      "rewrite": "/index.html"
-    },
-    {
-      "route": "/assets/*",
-      "rewrite": "/assets/*"
-    },
-    {
-      "route": "/scripts/*",
-      "rewrite": "/scripts/*"
-    },
-    {
-      "route": "/styles/*",
-      "rewrite": "/styles/*"
-    },
-    {
-      "route": "/polyfills/*",
-      "rewrite": "/polyfills/*"
-    },
-    {
-      "route": "/favicon.ico",
-      "rewrite": "/favicon.ico"
-    },
-    {
-      "route": "/manifest.json",
-      "rewrite": "/manifest.json"
-    },
-    {
-      "route": "/service-worker.js",
-      "rewrite": "/service-worker.js"
-    },
-    {
-      "route": "/ngsw-worker.js",
-      "rewrite": "/ngsw-worker.js"
-    },
-    {
-      "route": "/ngsw.json",
-      "rewrite": "/ngsw.json"
-    },
-    {
-      "route": "/sitemap.xml",
-      "rewrite": "/sitemap.xml"
-    },
-    {
       "route": "/*",
-      "rewrite": "/index.html"
+      "serve": "/index.html",
+      "statusCode": 200
     }
-  ]
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
 }
